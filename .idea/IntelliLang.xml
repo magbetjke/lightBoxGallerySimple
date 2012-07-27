@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LanguageInjectionConfiguration">
+    <injection language="CSS" injector-id="xml">
+      <display-name>TitleWindow/@styleName</display-name>
+      <place><![CDATA[xmlAttribute().withLocalName(string().equalTo("styleName")).withParent(xmlTag().withLocalName(string().equalTo("TitleWindow")).withNamespace(string().equalTo("http://www.adobe.com/2006/mxml")))]]></place>
+    </injection>
+  </component>
+</project>
+

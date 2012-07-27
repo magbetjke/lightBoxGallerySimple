@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+                maxWidth="{Application.application.width}" minWidth="50"
+
+                maxHeight="{Application.application.height}" minHeight="50"
+                clipContent="false"
+                headerHeight="{title ? 30 : 0}"
+                keyDown="onKeyDown(event)">
+
+    <mx:Script>
+		<![CDATA[
+        import mx.core.Application;
+        import mx.core.FlexGlobals;
+        import mx.managers.PopUpManager;
+
+        protected var okFunction:Function;
+        protected var cancelFunction:Function;
+
+        protected var okFunctionParameters:Array;
+        protected var cancelFunctionParameters:Array;
+
+        public var isOpen:Boolean;
+
+        protected function getPaddingTop():Number {
+            var paddingTop:Number = getStyle('paddingTop');
+            if (!isNaN(paddingTop)) return paddingTop;
+            return 0;
+        }
+
+/*        private function onAddedToStage():void {
+            Application.application.addEventListener(Event.RESIZE, onResize);
+            onResize();
+        }
+
+        private function onResize(event:Event = null):void {
+            if (Application.application) {
+                scaleX = scaleY = ScaleUtil.getScale();
+            }
+        }*/
+
+        public function openPopUp(modal:Boolean = true):void {
+
+            if (isOpen)return;
+
+
+            isOpen = true;
+            PopUpManager.addPopUp(this, FlexGlobals.topLevelApplication as DisplayObject, modal);
+
+            initPosition();
+
+            setFocus();
+        }
+
+        public function initPosition():void {
+            PopUpManager.centerPopUp(this);
+        }
+
+        public function closePopUp():void {
+            if (isOpen) {
+
+                PopUpManager.removePopUp(this);
+
+                isOpen = false;
+
+            }
+        }
+
+        public function dispatchOk():void {
+            if (okFunction != null)okFunction.apply(this, okFunctionParameters);
+            closePopUp();
+        }
+
+        public function dispatchCancel():void {
+            if (cancelFunction != null)cancelFunction.apply(this, cancelFunctionParameters);
+            closePopUp();
+        }
+
+        protected function onKeyDown(event:KeyboardEvent):void {
+            if (event.keyCode == Keyboard.ENTER) {
+                //dispatchOk();
+            } else if (event.keyCode == Keyboard.ESCAPE) {
+                dispatchCancel();
+            }
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+        }
+
+        override public function set title(value:String):void {
+            super.title = value;
+        }
+        ]]>
+	</mx:Script>
+</mx:Panel>

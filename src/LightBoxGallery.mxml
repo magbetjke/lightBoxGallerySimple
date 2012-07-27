@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+               backgroundColor="0x000000"
+               xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:comp="*" width="1000" height="1000" creationComplete="init(event)">
+    <fx:Style>
+
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        mx|Panel {
+            dropShadowVisible: false;
+            borderAlpha: 0;
+            borderColor: #88b40f;
+            backgroundColor: #88b40f;
+            borderThicknessLeft: 0;
+            borderThicknessTop: 0;
+            borderThicknessBottom: 0;
+            borderThicknessRight: 0;
+            roundedBottomCorners: true;
+            cornerRadius: 10;
+        }
+
+    </fx:Style>
+    <fx:Script><![CDATA[
+        import mx.controls.Alert;
+        import mx.events.FlexEvent;
+
+        private function init(event:FlexEvent):void {
+            var urls:Vector.<String> = new <String>[];
+            urls.push('http://cs411520.userapi.com/v411520456/1f86/t1s7eofIgwo.jpg');
+            urls.push('http://cs5899.userapi.com/v5899342/80a/6jjQ83N4bvU.jpg');
+            urls.push('http://cs304401.userapi.com/v304401433/40b5/pGs0eXJJego.jpg');
+            urls.push('http://eu.media.blizzard.com/d3/media/wallpapers/wallpaper025/wallpaper025-1920x1200.jpg');
+            urls.push('http://eu.media.blizzard.com/d3/media/wallpapers/wallpaper023/wallpaper023-1920x1200.jpg');
+            urls.push('http://eu.media.blizzard.com/d3/media/wallpapers/wallpaper023/wallpaper023-1920x1200.jpgx');
+            gallery.dataProvider = urls;
+        }
+        ]]></fx:Script>
+    <comp:Gallery id="gallery" width="100%" height="100%"/>
+</s:Application>
